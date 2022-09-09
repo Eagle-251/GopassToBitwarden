@@ -6,7 +6,11 @@ import json
 from pathlib import Path
 import sys
 
-args = sys.argv[1]
+try:
+    args = sys.argv[1]
+except:
+    args = ""
+    print("No arguments passed, running against the entire pass database...")
 
 def export_passwords(args):
     export = []
@@ -37,4 +41,4 @@ def _get_pass_base_path() -> str:
     return os.environ.get('PASSWORD_STORE_DIR', os.path.expanduser(
         '~/.password-store'))
 
-export_passwords()
+export_passwords(args)
